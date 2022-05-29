@@ -1,0 +1,79 @@
+<project name="Programmation Orientee Objet" default="run" basedir=".">
+  <property name="src_dir" value="src"/>
+  <property name="pkg_dir" value="it/caculli/gzc/poo"/>
+  <property name="lib_dir" value="misc/lib"/>
+  <property name="doc_dir" value="doc"/>
+  <property name="build_dir" value="build"/>
+  <property name="test_dir" value="test"/>
+  <property name="pkg_name" value="it.caculli.gzc.poo"/>
+  <property name="main_class" value="Main"/>
+  <property name="jar_file" value="poo.jar"/>
+
+  <path id="project.class.path">
+    <pathelement path="${build_dir}"/>
+  </path>
+
+  <target name="help">
+  </target>
+
+  <target name="clean">
+    <delete dir="${doc_dir}"/>
+    <delete dir="${build_dir}"/>
+    <delete dir="${test_dir}"/>
+    <delete file="${jar_file}"/>
+  </target>
+
+  <target name="doc">
+    <delete dir="${doc_dir}"/>
+    <mkdir dir="${doc_dir}"/>
+    <javadoc destdir="${doc_dir}" sourcepath="${src_dir}"
+             packagenames="${pkg_name}.*" doctitle="${ant.project.name}"
+             author="true" use="true" version="true">
+      <bottom><![CDATA[<i>Copyright &#169; 2020 - Giorgio Caculli. All Rights Reserved.</i>]]></bottom>
+      <classpath refid="project.class.path"/>
+    </javadoc>
+  </target>
+
+  <target name="build">
+    <delete dir="${build_dir}"/>
+    <mkdir dir="${build_dir}"/>
+    <copy todir="${build_dir}">
+      <fileset dir="${src_dir}">
+        <exclude name="**/*.java"/>
+      </fileset>
+    </copy>
+    <javac srcdir="${src_dir}" sourcepath="${src_dir}"
+           destdir="${build_dir}" includeantruntime="false"
+           debug="true" verbose="false" source="11" target="11">
+      <classpath refid="project.class.path"/>
+    </javac>
+  </target>
+
+  <target name="test" depends="build">
+    <delete dir="${test_dir}"/>
+    <mkdir dir="${test_dir}"/>
+  </target>
+
+  <target name="jar" depends="test">
+    <delete file="${jar_file}"/>
+    <jar destfile="${jar_file}">
+      <fileset dir="${build_dir}">
+      </fileset>
+      <manifest>
+        <attribute name="Main-Class" value="${pkg_name}.${main_class}"/>
+        <attribute name="Built-By" value="Giorgio Caculli"/>
+        <attribute name="Codebase" value="https://gzc.caculli.it/project/java/poo"/>
+        <attribute name="Permissions" value="sandbox"/>
+        <attribute name="Implementation-Title" value="POO"/>
+        <attribute name="Implementation-Vendor" value="A GIORGIO CACULLI PRODUCTION"/>
+        <attribute name="Implementation-Version" value="1.0"/>
+      </manifest>
+    </jar>
+  </target>
+
+  <target name="run" depends="jar">
+    <java classname="${pkg_name}.${main_class}" fork="true">
+      <classpath refid="project.class.path"/>
+    </java>
+  </target>
+</project>

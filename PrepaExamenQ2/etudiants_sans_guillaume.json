@@ -1,0 +1,14 @@
+{
+  "etudiants": [
+    {
+      "nom": "Caculli",
+      "prenom": "Giorgio",
+      "annee": 2
+    },
+    {
+      "nom": "Taminiau",
+      "prenom": "Tanguy",
+      "annee": 2
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "etudiants": [
+    {
+      "nom": "Caculli",
+      "prenom": "Giorgio",
+      "annee": 2
+    },
+    {
+      "nom": "Lambert",
+      "prenom": "Guillaume",
+      "annee": 2
+    },
+    {
+      "nom": "Taminiau",
+      "prenom": "Tanguy",
+      "annee": 2
+    }
+  ]
+}
